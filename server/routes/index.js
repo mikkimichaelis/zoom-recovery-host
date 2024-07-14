@@ -25,18 +25,20 @@ router.get('/', async (req, res, next) => {
         if (!context) {
             return res.render('index', {
                 isZoom: false,
-                title: `Hello Browser`,
+                title: `Recovery Host`,
             });
         }
 
         // Check if the context is valid and not expired
         if (isContextExpired(context)) {
-            return res.status(401).json({ error: 'Invalid or expired context' });
+            return res
+                .status(401)
+                .json({ error: 'Invalid or expired context' });
         }
 
         return res.render('index', {
             isZoom: true,
-            title: `Hello Zoom`,
+            title: `Recovery Host`,
         });
     } catch (e) {
         next(handleError(e));
